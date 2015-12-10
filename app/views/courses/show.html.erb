@@ -1,0 +1,25 @@
+<nav class= "top-bar"><%= link_to "Back to all courses", courses_path %></nav>
+<div class="row">
+  <div class="medium-12 columns">
+<%= image_tag(@course.poster_image_url.to_s)%>
+<h2><%= @course.title %></h2> <p><%= link_to "edit", edit_course_path(@course) %> | <%= link_to "delete", course_path(@course), method: :delete, confirm: "Are you sure?" %></p>
+<h3><%= formatted_date(@course.release_date) %></h3>
+<h4>Professor. <%= @course.professor %> </h4>
+<p><%= @course.description %></p>
+
+<hr>
+
+<h3>Reviews of <em><%= @course.title %></em></h3>
+<% if current_user %>
+  <% @course.reviews.each do |review| %>
+    <p><%= review.text %></p>
+    <p><%= review.rating_out_of_ten %>/10</p>
+    <small>- <%= review.user.full_name %></small><br/>
+  <% end %>
+  <p><%= link_to "Write a review!", new_course_review_path(@course) %></p>
+<% else %>
+  <p>Please <%= link_to "log in", new_session_path %> to see reviews and add your own.</p> 
+<% end %>
+</div>
+</div>
+

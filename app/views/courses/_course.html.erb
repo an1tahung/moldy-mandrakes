@@ -1,0 +1,8 @@
+<div class="medium-4 columns centered">
+  <%= image_tag(course.poster_image_url_url(:thumb).to_s)%>
+  <h3><%= link_to course.title, course_path(course) %></h2> 
+  <%= course.review_average %>/10
+  <h3><%= formatted_date(course.release_date) %></h3>
+  <h5>Professor: <%= course.professor %></h5>
+  <p class='text-justify'><%= course.description %></p>
+</div>
